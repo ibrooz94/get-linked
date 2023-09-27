@@ -3,23 +3,44 @@
 </script>
 
 <template>
- <p class="text-black"> Tailwind better help me </p>
- <p class="text-zinc-500 underline decoration-red-500"> Tailwind better help me </p>
+    <div class="flex h-screen w-[50vw] justify-center items-center" >
+    <!-- style="perspective:500px"> -->
 
- <input type="text" class="border border-green-500">
+        <button class="transition px-4 py-2 text-xl font-sans border-[5px] text-white border-[#272727]">
+            Hover me
+        </button>
+    </div>
 
- <div class="divide-y divide-blue-300">
-    <li>Hello 1</li>
-    <li>Hello 2</li>
-    <li>Hello 3</li>
-    <li>Hello 4</li>
-    <li>Hello 5</li>
 
-    <button class="outline outline-zinc-50 text-zinc-500 bg-purple-200 shadow-lg shadow-purple-900">
-        Click me
-    </button>
- </div>
 </template>
 
 <style scoped>
+
+ .transition{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 1500ms;
+ }
+ .transition:hover{
+    color: black
+ }
+ .transition::before{
+    content: '';
+    background-color: yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transform-origin: bottom right;
+    transform: rotate(90deg);
+    /* transition: transform 1s, background-color 1s 400ms; */
+    transition: all 1s;
+ }
+ .transition:hover::before{
+    transform: rotate(0deg);
+    background-color: aquamarine;
+ }
 </style>
