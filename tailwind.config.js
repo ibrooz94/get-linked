@@ -11,6 +11,9 @@ module.exports = {
         'bright-purple': '#903AFF',
         'purple': '#D434FE',
       },
+      fontFamily: {
+        'clash': ['Clash Display', 'sans-serif'],
+      },
     },
   },
   plugins: [],
