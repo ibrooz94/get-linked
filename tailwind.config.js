@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         'clash': ['Clash Display', 'sans-serif'],
       },
+      animation: {
+        'spin-slow': 'spin 15s linear infinite',
+      }
     },
   },
   plugins: [],

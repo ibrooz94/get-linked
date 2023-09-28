@@ -3,9 +3,9 @@
 </script>
 
 <template>
-    <div class="flex h-screen w-[50vw] justify-center items-center" >
+    <div class="flex h-screen w-[100vw] justify-center items-center" >
     <!-- style="perspective:500px"> -->
-
+      <span class="lens-flare"></span>
         <button class="transition px-4 py-2 text-xl font-sans border-[5px] text-white border-[#272727]">
             Hover me
         </button>
@@ -15,7 +15,28 @@
 </template>
 
 <style scoped>
+        .lens-flare {
+            width: 150px;
+            height: 150px;
+            background: rgba(127, 0, 127, 0.188);
+            position: relative;
+            animation: flareAnimation 3s linear infinite;
+            box-shadow: 0 0 200px rgba(128, 0, 128, 0.7);
+            border-radius: 50%;
+        }
 
+        @keyframes flareAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: .5;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
  .transition{
     position: relative;
     z-index: 1;
