@@ -15,7 +15,11 @@ module.exports = {
         'clash': ['Clash Display', 'sans-serif'],
       },
       animation: {
-        'spin-slow': 'spin 15s linear infinite',
+        'spin-slow': 'spin 100s linear infinite',
+      },
+      backgroundPosition: {
+        'mobile': "8% 10%, 100% 100%", // header background image postions
+        'large': "10% -40%, 100% 100%"
       }
     },
   },
