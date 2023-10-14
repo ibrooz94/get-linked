@@ -13,6 +13,8 @@ body{
     background-color: var(--dark-purple);
     font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
+    scroll-behavior: smooth;
+    /* overflow-x: hidden; */
     /* background-color: white; */
 }
 

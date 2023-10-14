@@ -2,36 +2,10 @@
 import { ref } from 'vue'
 import NavBar from '../components/NavBar.vue';
 import CoundownTimer from '../components/CountdownTimer.vue';
-import { useMotion } from '@vueuse/motion';
+import FAQs from "../components/FAQs.vue"
+import Criteria from '../components/Criteria.vue';
 
 const purpleGradient = "bg-gradient-to-r from-purple to-bright-purple hover:bg-gradient-to-t hover:from-bright-purple hover:to-purple";
-
-const stagger = (index) => {
-    let delayVal = index * 250
-    return {
-        initial: { opacity: 0, x: 100,  filter: 'blur(5px)' },
-        enter: {
-            opacity: 1, x: 0, scale: 1, filter: 'blur(0px)',
-            transition: {
-                delay: delayVal
-            }
-        }
-    }
-}
-const pop = {
-        initial: { opacity: 0, scale:0, filter: 'blur(5px)'
-     },
-        enter: {
-            opacity: 1, scale:1, filter: 'blur(0px)',
-            transition: {
-                duration: 1000,
-                type: 'keyframes',
-                origin: 'bottom',
-                ease: [0.64, 0, 0.78, 0]
-            }
-        }
-    }
-
 
 </script>
 
@@ -42,7 +16,8 @@ const pop = {
 
         <section class="flex flex-col items-stretch text-white px-0 lg:px-[7%] max-w-[1512px] mx-auto lg:gap-8  ">
 
-            <h1 v-motion-slide-left  class="lg:self-end lg:text-4xl italic font-extrabold text-center lg:text-start "> Igniting a
+            <h1 class="lg:self-end lg:text-4xl italic font-extrabold text-center lg:text-start ">
+                Igniting a
                 Revolution
                 in
                 <span class="relative whitespace-nowrap">
@@ -55,7 +30,8 @@ const pop = {
 
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center relative">
                 <!-- stars  -->
-                <img class="absolute top-4 lg:top-[-5%] left-[5%] -z-[1] w-2 lg:w-auto " src="../assets/images/star-1.png" alt="">
+                <img class="absolute top-4 lg:top-[-5%] left-[5%] -z-[1] w-2 lg:w-auto " src="../assets/images/star-1.png"
+                    alt="">
                 <img class="absolute top-[2%] right-[10%] lg:top-[5%] lg:right-[40%]   -z-[1] w-3 lg:w-auto "
                     src="../assets/images/star-2.png" alt="">
                 <img class="absolute left-[75%] lg:left-[30%] bottom-[65%] lg:bottom-[30%] -z-[1] w-3 lg:w-auto "
@@ -64,7 +40,7 @@ const pop = {
 
                 <div class="flex flex-col items-center lg:items-start flex-initial gap-4 text-center lg:text-start">
 
-                    <h1 v-motion="stagger(1)" 
+                    <h1
                         class="font-clash text-3xl lg:text-7xl pt-8 max-w-[300px] lg:max-w-[600px] font-bold">
                         getlinked
                         <span class="bulb relative">Tech
@@ -73,28 +49,28 @@ const pop = {
                             </span>
                         </span> <br> Hackathon
                         <span class="text-purple">1.0</span>
-                        <span class="inline-block text-[1em]">
+                        <span class="inline-block text-[1em] align-middle">
                             <img class="w-[1em] h-auto" src="../assets/images/chain.png" alt="">
                         </span>
-                        <span class="inline-block lg:-mr-16 text-[1em]"> <img class="w-[1em] h-auto"
+                        <span class="inline-block lg:-mr-16 text-[1em] align-middle"> <img class="w-[1em] h-auto"
                                 src="../assets/images/burst.png" alt=""></span>
                     </h1>
 
-                    <p v-motion="stagger(2)" class=" w-[260px] lg:w-[520px] ">
+                    <p class=" w-[260px] lg:w-[520px] ">
                         Participate in getlinked tech Hackathon 2023 stand a chance to
                         win a
                         Big prize</p>
 
-                    <button v-motion="stagger(3)" :class="purpleGradient" class=" text-white py-4 px-14 lg:self-start">
+                    <button :class="purpleGradient" class=" text-white py-4 px-14 lg:self-start">
                         Register
                     </button>
-                    <CoundownTimer v-motion="stagger(3)" />
+                    <CoundownTimer />
 
                 </div>
 
 
 
-                <div v-motion="pop" class=" lg:w-[55%] mx-[-9%] relative">
+                <div class=" lg:w-[55%] mx-[-9%] relative">
                     <img class="opacity-70 grayscale-[70%] w-full mix-blend-luminosity"
                         src="../assets/images/glassesman.png" alt="">
                     <img class="absolute top-0 animate-spin-slow" src="../assets/images/globe.png" alt="">
@@ -107,14 +83,18 @@ const pop = {
 
     <hr class="border-zinc-600 mb-14">
 
-    <section class="overflow-hidden flex flex-col lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] mx-auto px-[7%] text-center lg:text-start ">
-        <div v-motion-slide-visible-left class="pb-16 relative  ">
+    <!-- INTRODUCTION -->
+
+    <section class="overflow-hidden flex flex-col lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] mx-auto
+                    px-[7%] text-center lg:text-start ">
+        <div class="pb-16 relative  ">
             <img class="absolute lg:-left-[7%] top-[30%]" src="../assets/images/star_purple.png" alt="">
             <img class="absolute w-[2em] lg:w-auto bottom-3 right-[45%] lg:bottom-0 lg:right-[-2em]"
                 src="../assets/images/curly_arrow.png" alt="">
-            <img class="self-center justify-center" src="../assets/images/big_idea.png" alt="">
+
+            <img src="../assets/images/big_idea.png" alt="">
         </div>
-        <div v-motion-slide-visible-right  class="text-white ">
+        <div class="text-white ">
             <p class="text-xl lg:text-3xl font-clash font-bold mb-1"> Introduction to getlinked <br>
                 <span class="text-purple"> techHackathon 1.0</span>
             </p>
@@ -126,15 +106,23 @@ const pop = {
                 of technology, and creating solutions that can change the world,
                 that's what we're all about!</p>
         </div>
+
     </section>
 
-    <hr class="border-zinc-600 mt-14">
+    <hr class="border-zinc-600 mt-14 h-4 ">
 
-    <section 
-        class=" overflow-hidden flex flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
-        <div v-motion-slide-visible-left class="text-white relative">
+    <!-- RULES AND GUIDELINES -->
+    <section
+        class="relative flex flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
 
-            <img class="absolute w-[1em] lg:w-[2em] bottom-0 lg:bottom-[1.5em] right-[70%] lg:right-0 lg:-mr-14 "
+        <img class="absolute -top-[20%] -left-[20%] lg:left-0  z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
+            alt="">
+        <!-- <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] "
+            src="../assets/images/purple-flare-right.png" alt=""> -->
+
+        <div class="text-white relative ">
+            <img class="absolute w-[1em] lg:w-fit top-0 lg:-top-[2em] left-[20em]" src="../assets/images/star-2.png" alt="">
+            <img class="absolute w-[1em] lg:w-fit bottom-0 lg:bottom-[1.5em] right-[70%] lg:right-0 lg:-mr-14 "
                 src="../assets/images/star-1.png" alt="">
 
             <p class="text-xl lg:text-3xl font-clash font-bold mb-1"> Rules and
@@ -152,17 +140,76 @@ const pop = {
             </p>
 
         </div>
-        <div v-motion-slide-visible-right :enter={opacity:1} class="pb-8 overflow-hidden">
+        <div class="pb-8 relative">
             <img src="../assets/images/sitting_woman.png" alt="">
+
         </div>
 
     </section>
 
-    <hr class="border-zinc-600">
+    <hr class="border-zinc-600 my-6">
+
+    <!-- CRITERIA -->
+    <section
+        class="relative flex flex-col lg:flex-row items-center justify-center gap-[7%] max-w-[1512px] px-[7%] mx-auto text-center lg:text-start">
+
+        <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] z-[-1] lg:w-[45em]"
+            src="../assets/images/purple-flare.png" alt="">
+        <img class="absolute bottom-0 lg:-bottom-[20%] right-0 z-[-1] " src="../assets/images/purple-flare.png" alt="">
+
+        <div class="pb-8  basis-6/12 relative">
+            <img class="w-auto object-fill" src="../assets/images/criteria.png" alt="">
+        </div>
+
+        <div
+            class="relative  basis-6/12  max-w-[500px] lg:py-[4.5em] text-white text-[13px] lg:text-[14px] ">
+            <p class="text-xl lg:text-3xl font-clash font-bold mb-5"> Judging Criteria
+                <br>
+                <span class="text-purple">Key attributes</span>
+            </p>
+            <Criteria/>
+
+            <button :class="purpleGradient" class=" mt-4 text-white py-4 px-14 lg:self-start">
+                Register
+            </button>
+        </div>
+    </section>
+
+    <hr class="border-zinc-600 my-6">
+
+    <!-- FAQs  -->
+    <section
+        class="relative flex flex-auto flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto 
+        text-center lg:text-start">
+
+        <img class="absolute -top-[20%] -left-[20%] lg:left-0  z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
+            alt="">
+
+        <div class="text-white basis-6/12 relative ">
+            <img class="absolute w-[1em] lg:w-fit top-0 lg:-top-[2em] left-[20em]" src="../assets/images/star-2.png" alt="">
+            <img class="absolute w-[1em] lg:w-fit bottom-0 lg:bottom-[1.5em] right-[70%] lg:right-0 lg:-mr-14 "
+                src="../assets/images/star-1.png" alt="">
+
+
+            <p class="text-xl lg:text-3xl font-clash font-bold mb-5"> Frequently Asked
+                <br>
+                <span class="text-purple">Questions</span>
+            </p>
+            <p class="mb-12"> We got answers to the questions that you <br> might want to ask about getlinked Hackathon 1.0</p>
+
+            <FAQs/>
+
+        </div>
+        <div class="pb-8 basis-6/12 relative">
+            <img class="lg:pt-16" src="../assets/images/faq.png" alt="">
+        </div>
+
+    </section>
+
+    <hr class="border-zinc-600 my-6">
 </template>
 
 <style scoped>
-
 header {
     position: relative;
     background: url('../assets/images/metrix.png');
