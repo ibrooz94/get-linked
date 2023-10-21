@@ -7,8 +7,8 @@ const menuOpen = ref(false)
 
 </script>
 <template>
-    <nav class="sticky backdrop-blur-lg top-[-10px] mt-[-110px]
-    z-[999] flex items-center justify-between max-w-[1512px] mx-auto px-[7%] pt-8 pb-4 lg:h-auto">
+    <nav class="z-[999] flex items-center justify-between max-w-[1512px] mx-auto px-[7%] pt-8 pb-4 lg:h-auto">
+    <!-- sticky backdrop-blur-lg top-[-10px] mt-[-110px]"> -->
         <div class="flex-none z-[11] ">
             <img class="w-40" src="../assets/images/getlinked_logo.png" alt="logo" srcset="" />
         </div>

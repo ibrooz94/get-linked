@@ -25,9 +25,10 @@ const criteriaList = [
 </script>
 
 <template>
-
-<p class="font-bold pb-[22px] leading-6 text-white" v-for="(criteria, index) in criteriaList" :key="index">
-    <span class="text-purple text-base">{{ criteria.question }}:</span>
-    {{ criteria.answer }}
-  </p>
+  <TransitionGroup appear>
+    <p class="font-bold pb-[22px] leading-6 text-white" v-for="(criteria, index) in criteriaList" :key="index">
+      <span class="text-purple text-base">{{ criteria.question }}:</span>
+      {{ criteria.answer }}
+    </p>
+  </TransitionGroup>
 </template>

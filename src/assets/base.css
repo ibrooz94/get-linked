@@ -2,19 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --purple-gradient: linear-gradient(270deg, #903AFF 0%, #FE34B9 100%);
-    --dark-purple: #150e28;
-    --bright-purple: #903AFF;
-    --purple: #D434FE;
+@layer components {
+  .purple-gradient {
+   @apply bg-gradient-to-r from-purple to-bright-purple hover:bg-gradient-to-t hover:from-bright-purple hover:to-purple
+  }
+
+}
+:root {
+  --purple-gradient: linear-gradient(270deg, #903aff 0%, #fe34b9 100%);
+  --dark-purple: #150e28;
+  --bright-purple: #903aff;
+  --purple: #d434fe;
 }
 
-body{
-    background-color: var(--dark-purple);
-    font-family: 'Montserrat', sans-serif;
-    margin: 0 auto;
-    scroll-behavior: smooth;
-    /* overflow-x: hidden; */
-    /* background-color: white; */
+body {
+  background-color: var(--dark-purple);
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto;
+  overflow-x: hidden;
+  /* background-color: white; */
 }
 
+html.lenis {
+  height: auto;
+  overflow-x: hidden;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
