@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 
-const targetDate = new Date("2023-09-30T11:59:59").getTime();
+const targetDate = new Date("2023-11-05T00:00:00").getTime();
 
 const hours = ref(0);
 const minutes = ref(0);

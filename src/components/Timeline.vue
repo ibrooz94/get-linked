@@ -39,7 +39,9 @@ const timelineData = [
             <li v-for="(item, index) in timelineData"
                 class="flex flex-col lg:flex-row relative gap-4 lg:gap-10 items-start lg:items-center text-[12px] mb-8 lg:mb-20 pl-14 lg:pl-0">
 
-                <div :class="index % 2 == 0 ? 'lg:order-3 lg:text-start' : 'lg:order-1 lg:text-end' "
+                <div 
+                :class="index % 2 == 0 ? 'lg:order-1 lg:text-end' : 'lg:order-3 lg:text-start' "
+
                 class="basis-6/12 text-start lg:text-[14px] ">
                     <span class="inline-block text-purple font-bold lg:text-2xl lg:mb-4"> {{ item.title }} </span> <br>
                     {{ item.description }}
@@ -51,7 +53,7 @@ const timelineData = [
                 </div>
 
                 <div 
-                :class="index % 2 == 0 ? 'lg:order-1 lg:text-end' : 'lg:order-3 lg:text-start' "
+                :class="index % 2 == 0 ? 'lg:order-3 lg:text-start' : 'lg:order-1 lg:text-end' "
                 class="basis-6/12 font-bold lg:text-2xl text-purple "> {{ item.date }} </div>
             </li>
         </ul>

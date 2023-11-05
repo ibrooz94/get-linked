@@ -11,7 +11,7 @@ import { setupGSAPAnimation } from "../components/useAnimation";
 import Timeline from "../components/Timeline.vue";
 
 gsap.registerPlugin(ScrollTrigger);
-const { animateFadeRight, animateFadeLeft } = setupGSAPAnimation();
+const { animateFadeRight, animateFadeLeft, updateNavbar } = setupGSAPAnimation();
 const purpleGradient =
   "bg-gradient-to-r from-purple to-bright-purple hover:bg-gradient-to-t hover:from-bright-purple hover:to-purple";
 
@@ -26,17 +26,29 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
+
+// Handle smoothscroll to section
+function handleScrollTo(target) {
+  console.log("Scrolled to ", target)
+  lenis.scrollTo(target, {offset: -120})
+}
+
 const main = ref();
+let activeSection = ref()
 let ctx;
 
-// GSAP OnScroll Animation
 onMounted(() => {
+
+// GSAP OnScroll Animation
   ctx = gsap.context((self) => {
     const fadeRight = self.selector("[data-fade-right]");
     fadeRight.forEach(animateFadeRight);
 
     const fadeLeft = self.selector("[data-fade-left]");
     fadeLeft.forEach(animateFadeLeft);
+
+    updateNavbar(activeSection)
+
   }, main.value);
 });
 
@@ -46,22 +58,22 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NavBar />
-  <main ref="main">
+  <NavBar @scroll-to="handleScrollTo" :activeSection="activeSection"/>
+  <main ref="main" class="overflow-x-hidden">
+    <!-- HEADER -->
     <header class="before:animate-pulse bg-mobile lg:before:bg-large">
-      <!-- pt-[100px] "> -->
       <hr class="border-zinc-600 mb-4" />
 
       <section class="flex flex-col items-stretch text-white px-0 lg:px-[7%] max-w-[1512px] mx-auto lg:gap-8">
-        <h1 class="lg:self-end lg:text-4xl italic font-extrabold text-center lg:text-start">
+        <h1 class="lg:self-end lg:text-4xl italic font-bold text-center lg:text-start">
           Igniting a Revolution in
           <span class="relative whitespace-nowrap">
             HR Innovation
             <img src="../assets/images/underline.svg" alt="Custom Underline"
               class="absolute -bottom-4 left-0 right-0 w-full h-5" />
           </span>
-          <!-- <span class="custom-underline relative whitespace-nowrap"> HR Innovation </span> -->
         </h1>
+
 
         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center relative">
           <!-- stars  -->
@@ -71,42 +83,50 @@ onUnmounted(() => {
             src="../assets/images/star-2.png" alt="" />
           <img class="absolute left-[75%] lg:left-[30%] bottom-[65%] lg:bottom-[30%] -z-[1] w-3 lg:w-auto"
             src="../assets/images/star-2.png" alt="" />
-
-          <div class="flex flex-col items-center lg:items-start flex-initial gap-4 text-center lg:text-start">
-            <h1 class="font-clash text-3xl lg:text-7xl pt-8 max-w-[300px] lg:max-w-[600px] font-bold">
-              getlinked
-              <span class="bulb relative">Tech
-                <span class="absolute top-[-.9em] right-[.5em] text-[.7em] animate-bounce">
-                  <img src="../assets/images/bulb.png" alt="" class="w-[1em] h-auto;" />
+          <Transition name="slide-fade" appear>
+            <div class="flex flex-col items-center lg:items-start flex-initial gap-4 text-center lg:text-start">
+              <h1 class="font-clash text-3xl lg:text-7xl pt-8 max-w-[300px] lg:max-w-[600px] font-bold">
+                getlinked
+                <span class="bulb relative">Tech
+                  <span class="absolute top-[-.9em] right-[.5em] text-[.7em] animate-bounce">
+                    <img src="../assets/images/bulb.png" alt="" class="w-[1em] h-auto;" />
+                  </span>
                 </span>
-              </span>
-              <br />
-              Hackathon
-              <span class="text-purple">1.0</span>
-              <span class="inline-block text-[1em] align-middle">
-                <img class="w-[1em] h-auto" src="../assets/images/chain.png" alt="" />
-              </span>
-              <span class="inline-block lg:-mr-16 text-[1em] align-middle">
-                <img class="w-[1em] h-auto" src="../assets/images/burst.png" alt="" /></span>
-            </h1>
+                <br />
+                Hackathon
+                <span class="text-purple">1.0</span>
+                <span class="inline-block text-[1em] align-middle">
+                  <img class="w-[1em] h-auto" src="../assets/images/chain.png" alt="" />
+                </span>
+                <span class="inline-block lg:-mr-16 text-[1em] align-middle">
+                  <img class="w-[1em] h-auto" src="../assets/images/burst.png" alt="" /></span>
+              </h1>
 
-            <p class="w-[260px] lg:w-[520px]">
-              Participate in getlinked tech Hackathon 2023 stand a chance to win
-              a Big prize
-            </p>
+              <p class="w-[260px] lg:w-[520px]">
+                Participate in getlinked tech Hackathon 2023 stand a chance to win
+                a Big prize
+              </p>
 
-            <button :class="purpleGradient" class="text-white py-4 px-14 lg:self-start">
-              Register
-            </button>
-            <CoundownTimer />
-          </div>
+              <button :class="purpleGradient" class="text-white py-4 px-14 lg:self-start">
+                Register
+              </button>
+              <CoundownTimer />
+            </div>
 
-          <div class="lg:w-[55%] mx-[-9%] relative">
-            <img class="opacity-70 grayscale-[70%] w-full mix-blend-luminosity" src="../assets/images/glassesman.png"
-              alt="" />
-            <img class="absolute top-0 animate-spin-slow" src="../assets/images/globe.png" alt="" />
-          </div>
+          </Transition>
+
+
+          <Transition name="bounce" appear>
+
+            <div class="lg:w-[55%] mx-[-9%] relative">
+              <img class="opacity-70 grayscale-[70%] w-full mix-blend-luminosity" src="../assets/images/glassesman.png"
+                alt="" />
+              <img class="absolute top-0 animate-spin-slow" src="../assets/images/globe.png" alt="" />
+            </div>
+
+          </Transition>
         </div>
+
       </section>
     </header>
 
@@ -114,8 +134,9 @@ onUnmounted(() => {
 
     <!-- INTRODUCTION -->
 
-    <section
+    <section id="overview"
       class="overflow-hidden flex flex-col lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] mx-auto px-[7%] text-center lg:text-start">
+
       <div data-fade-left class="pb-16 relative">
         <img class="absolute lg:-left-[7%] top-[30%]" src="../assets/images/star_purple.png" alt="" />
         <img class="absolute w-[2em] lg:w-auto bottom-3 right-[45%] lg:bottom-0 lg:right-[-2em]"
@@ -123,6 +144,7 @@ onUnmounted(() => {
 
         <img src="../assets/images/big_idea.png" alt="" />
       </div>
+
       <div data-fade-right class="text-white">
         <p class="text-xl lg:text-3xl font-clash font-bold mb-1">
           Introduction to getlinked <br />
@@ -137,17 +159,19 @@ onUnmounted(() => {
           change the world, that's what we're all about!
         </p>
       </div>
+
     </section>
 
     <hr class="border-zinc-600 mt-14 h-4" />
 
     <!-- RULES AND GUIDELINES -->
+
     <section
       class="relative flex flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
       <img class="absolute -top-[20%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
         alt="" />
-      <!-- <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] "
-            src="../assets/images/purple-flare-right.png" alt=""> -->
+      <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] " src="../assets/images/purple-flare.png"
+        alt="">
 
       <div data-fade-right class="text-white relative">
         <img class="absolute w-[1em] lg:w-fit top-0 lg:-top-[2em] left-[20em]" src="../assets/images/star-2.png" alt="" />
@@ -176,6 +200,7 @@ onUnmounted(() => {
     <hr class="border-zinc-600 my-6" />
 
     <!-- CRITERIA -->
+
     <section
       class="relative flex flex-col lg:flex-row items-center justify-center gap-[7%] max-w-[1512px] px-[7%] mx-auto text-center lg:text-start">
       <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] z-[-1] lg:w-[45em]"
@@ -203,13 +228,13 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <hr class="border-zinc-600 my-6" />
+    <hr  class="border-zinc-600 my-6" />
 
     <!-- FAQs  -->
-    <section
+
+    <section id="faqs"
       class="relative flex flex-auto flex-col lg:flex-row  gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
-      <img class="absolute -top-[15%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
-        alt="" />
+
 
       <div data-fade-right class="text-white basis-6/12 relative">
         <img class="absolute w-[1em] lg:w-fit top-8 lg:-left-[15%]" src="../assets/images/star_purple.png" alt="" />
@@ -237,10 +262,11 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <hr class="border-zinc-600 my-20" />
+    <hr  class="border-zinc-600 my-20" />
 
     <!-- TIMELINE -->
-    <section class="relative flex flex-col items-center max-w-[1300px] px-[7%] mx-auto text-center">
+
+    <section id="timeline" class="relative flex flex-col items-center max-w-[1300px] px-[7%] mx-auto text-center">
       <img class="absolute w-[1em] lg:w-fit top-[8em] left-[25%]" src="../assets/images/star_purple.png" alt="" />
       <img class="absolute w-[1em] lg:w-fit bottom-[33%] right-[15%]" src="../assets/images/star-1.png" alt="" />
       <img class="absolute w-[1em] lg:w-fit bottom-0 left-24" src="../assets/images/star-2.png" alt="" />
@@ -260,20 +286,206 @@ onUnmounted(() => {
     <hr class="border-zinc-600 my-20" />
 
     <!-- PRIZES AND REWARDS -->
-    <section class="flex flex-col items-stretch text-white px-0 lg:px-[7%] max-w-[1512px] mx-auto lg:gap-8">
-      <h1 class="lg:self-end lg:text-4xl italic font-extrabold text-center lg:text-start">
-        Igniting a Revolution in
-        <span class="relative whitespace-nowrap">
-          HR Innovation
-          <img src="../assets/images/underline.svg" alt="Custom Underline"
-            class="absolute -bottom-4 left-0 right-0 w-full h-5" />
-        </span>
-        <!-- <span class="custom-underline relative whitespace-nowrap"> HR Innovation </span> -->
-      </h1>
 
-      <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center relative">
+    <section class="flex flex-col items-center text-white px-0 lg:px-[7%] max-w-[1512px] mx-auto lg:gap-8 ">
+      <p data-fade-left class="lg:self-end lg:pr-16 lg:pl-8 text-base text-center lg:text-start max-w-[550px] mb-8">
+        <span class="font-clash font-bold text-3xl">Prizes and <br> <span class="text-purple">Rewards</span> </span><br>
+        Highlight of the prizes or rewards for winners
+        and for participants.
+      </p>
+
+      <div class="flex w-full flex-col lg:flex-row justify-between items-center">
+        <div data-fade-right class="flex lg:-mt-12">
+          <img class src="../assets/images/trophy.png" alt="">
+        </div>
+
+        <div data-fade-left class="flex items-center gap-2 mt-24 lg:mt-32 lg:gap-4">
+          <div
+            class="relative font-bold text-[12px] lg:text-3xl text-center border border-purple bg-purple/10 px-4 pt-[18%] pb-5 rounded-lg  ">
+            <img class="absolute m-auto left-0 right-0 -top-[40%]" src="../assets/images/silver_medal.png" alt="">
+            <p>2nd <span class="block font-semibold lg:text-2xl">Runner</span> </p>
+            <p class="text-purple mt-4"> #300,000 </p>
+          </div>
+          <div data-fade-left
+            class="mt-12 relative font-bold text-[12px] lg:text-3xl text-center border border-purple bg-purple/10 px-4 pt-[18%] pb-5 rounded-lg ">
+            <img class="absolute m-auto left-0 right-0 -top-[55%] transfrom scale-[1.4]"
+              src="../assets/images/gold_medal.png" alt="">
+            <p>1st <span class="block font-semibold lg:text-2xl">Runner</span> </p>
+            <p class="text-bright-purple mt-4"> #400,000 </p>
+          </div>
+          <div data-fade-left
+            class="relative font-bold text-[12px] lg:text-3xl text-center border border-purple bg-purple/10 px-4 pt-[18%] pb-5 rounded-lg  ">
+            <img class="absolute m-auto left-0 right-0 -top-[40%]" src="../assets/images/bronze_medal.png" alt="">
+            <p>3rd <span class="block font-semibold lg:text-2xl">Runner</span> </p>
+            <p class="text-purple mt-4"> #150,000 </p>
+          </div>
+
+        </div>
       </div>
     </section>
+
+    <hr class="border-zinc-600 my-20" />
+
+    <!-- PARTNERS AND SPONSORS -->
+    <section class="flex flex-col items-center text-white px-0 lg:px-[7%] max-w-[1512px] mx-auto lg:gap-8 ">
+      <div class="text-center mb-12 lg:mb-20">
+        <p class="text-xl lg:text-3xl  font-clash font-bold mb-4">
+          Partners and Sponsors
+        </p>
+        <p class=" max-w-[500px]"> Getlinked Hackathon 1.0 is honored to have the following major companies as its
+          partners and sponsors
+        </p>
+
+      </div>
+      <div
+        class="w-[90%] lg:w-full border px-12 py-8 lg:px-8 lg:py-12  border-purple grid grid-rows-2 place-content-center place-items-center grid-cols-3">
+
+        <div class="relative p-2 w-full h-full first-letter flex justify-center items-center
+                    after:absolute after:bottom-0 after:h-[1px] lg:after:h-1 after:w-[80%] after:bg-purple
+                    before:absolute before:top-0 before:right-0 before:h-[90%] before:w-[1px] lg:before:w-1 before:bg-purple
+                    ">
+          <img src="../assets/images/sponsor_1.png" alt="sponsor_logo" />
+        </div>
+        <div class="relative p-2 w-full h-full first-letter flex justify-center items-center 
+                    after:absolute after:bottom-0 after:h-[1px] lg:after:h-1 after:w-[80%] after:bg-purple">
+          <img class="" src="../assets/images/sponsor_2.png" alt="sponsor_logo" />
+        </div>
+        <div class="relative p-2 w-full h-full first-letter flex justify-center items-center
+                    after:absolute  after:bottom-0 after:h-[1px] lg:after:h-1 after:w-[80%] after:bg-purple
+                    before:absolute before:top-0 before:left-0 before:h-[90%] before:w-[1px] lg:before:w-1 before:bg-purple
+        ">
+          <img src="../assets/images/sponsor_3.png" alt="sponsor_logo" />
+        </div>
+        <div class="relative p-2 w-full h-full first-letter flex justify-center items-center
+        before:absolute before:bottom-0 before:right-0 before:h-[90%] before:w-[1px] lg:before:w-1 before:bg-purple">
+
+          <img src="../assets/images/sponsor_4.png" alt="sponsor_logo" />
+        </div>
+        <div class="p-2 w-full h-full first-letter flex justify-center items-center">
+          <img class="object-fit" src="../assets/images/sponsor_5.png" alt="sponsor_logo" />
+        </div>
+        <div class="relative p-2 w-full h-full first-letter flex justify-center items-center
+        before:absolute before:bottom-0 before:left-0 before:h-[90%] before:w-[1px] lg:before:w-1 before:bg-purple">
+          <img class="object-fit" src="../assets/images/sponsor_6.png" alt="sponsor_logo" />
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-zinc-600 my-20" />
+
+    <!-- PRIVACY POLICY AND TERMS -->
+    <section
+      class="relative flex flex-auto flex-col lg:flex-row  gap-[8%] max-w-[1500px] px-[7%] mx-auto justify-between items-start text-center lg:text-start">
+      <img class="absolute -top-[15%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
+        alt="" />
+
+      <div data-fade-right class="text-white basis-6/12 relative">
+        <img class="absolute w-[1em] lg:w-fit top-8 lg:-left-[15%]" src="../assets/images/star_purple.png" alt="" />
+        <img class="absolute w-[1em] lg:w-fit bottom-0 lg:bottom-[1.5em] right-[70%] lg:right-0 lg:-mr-14"
+          src="../assets/images/star-1.png" alt="" />
+
+        <p class="text-xl lg:text-3xl font-clash font-bold mb-5">
+          Privacy Policy and
+          <br />
+          <span class="text-purple">Terms</span>
+        </p>
+        <p class="text-sm mb-4">Last updated on September 12, 2023</p>
+        <p class="mb-12">
+          Below are our privacy & policy, which outline a lot of goodies. it's our aim to always take of our participant
+        </p>
+
+        <div class="p-12 flex flex-col bg-purple/5 border-purple border-2 gap-3">
+          <p class="mb-8">
+            At getlinked tech Hackathon 1.0, we value your privacy
+            and are committed to protecting your personal information.
+            This Privacy Policy outlines how we collect, use, disclose,
+            and safeguard your data when you participate in our tech
+            hackathon event. By participating in our event, you consent
+            to the practices described in this policy.
+          </p>
+          <p class="text-purple font-bold"> Licensing Policy </p>
+          <p class=" font-bold"> Here are terms of our Standard License: </p>
+          <p
+            class="text-start pl-8 relative before:absolute before:left-0 before:w-4 before:h-4 before:rounded-full before:bg-green-500 mb-4">
+            The Standard License grants you a non-exclusive right to
+            navigate and register for our event </p>
+          <p
+            class="text-start pl-8 relative before:absolute before:left-0 before:w-4 before:h-4 before:rounded-full before:bg-green-500">
+            You are licensed to use the item available at any free source
+            sites, for your project developement </p>
+          <button :class="purpleGradient" class="text-white py-4 px-14 self-center mt-4">
+            Read More
+          </button>
+        </div>
+
+      </div>
+      <div data-fade-left class="pb-8 basis-6/12 flex self-center ">
+        <img src="../assets/images/privacypolicy.png" alt="" />
+      </div>
+    </section>
+
+    <hr class="border-zinc-600 mt-20" />
+
+    <!-- FOOTER -->
+    <footer
+      class="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-0 max-w-[1550px] mx-auto px-[7%] py-20 pb-12 text-[12px] bg-[#100b20]">
+
+      <div class="flex flex-col gap-12 overflow-hidden text-white">
+        <div>
+          <img class="w-40 mb-4" src="../assets/images/getlinked_logo.png" alt="logo" srcset="" />
+          <p class="max-w-[400px] "> Getlinked Tech Hackathon is a technology innovation program
+            established by a group of organizations with the aim of showcasing
+            young and talented individuals in the field of technology</p>
+        </div>
+
+        <div class="">
+          <span class="pr-3 border-r-2 border-purple"> Terms of use</span>
+          <span class="pl-3"> Privacy Policy </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <p class="text-purple font-semibold text-[14px]"> Useful Links </p>
+        <ul class="flex flex-col text-white gap-4">
+          <li><a href="#overview" @click="handleScrollTo('#overview')"> Overview </a></li>
+          <li><a href="#faqs" @click="handleScrollTo('#faqs')"> FAQs</a></li>
+          <li><a href="#timeline" @click="handleScrollTo('#timeline')"> Timeline</a> </li>
+          <li><a href="#"> Contact</a> </li>
+          <li class="flex gap-2 items-center"> <span class="text-purple"> Follow Us </span>
+            <a href="">
+              <img src="../assets/images/instagram.png" alt="instagram">
+            </a>
+            <a href="">
+              <img src="../assets/images/x.png" alt="twitter||x">
+            </a>
+            <a href="">
+              <img src="../assets/images/linkedin.png" alt="linkedin">
+            </a>
+            <a href="">
+              <img src="../assets/images/facebook.png" alt="facebook">
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-purple font-semibold text-[14px]"> Contact Us </p>
+
+        <ul class="flex flex-col text-white gap-2">
+          <li class="flex gap-2 items-center">
+            <img src="../assets/images/phone.png" alt="">
+            +234 6707653444
+          </li>
+          <li class="flex gap-2 items-center max-w-[120px]">
+            <img src="../assets/images/location.png" alt="">
+            27,Alara Street
+            Yaba 100012
+            Lagos State
+          </li>
+
+        </ul>
+      </div>
+
+    </footer>
 
   </main>
 </template>
@@ -305,54 +517,40 @@ header::before {
   background-blend-mode: hard-light;
 }
 
-.lensflare::before {
-  content: "";
-  background-image: url("../assets/images/purple-flare.png"),
-    url("../assets/images/purple-flare.png");
-  background-size: min(40em, 90%), min(32em, 90%);
-  background-position-x: 8%, 190%;
-  background-position-y: 10%, 100%;
-  background-repeat: no-repeat;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.75;
-  z-index: -1;
-  background-blend-mode: hard-light;
+.slide-fade-enter-active {
+  transition: all .8s ease-out;
 }
 
-.custom-underline::after {
-  content: "";
-  background-image: url("../assets/images/underline.svg");
-  background-size: 100% 20px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  padding-bottom: 20px;
-  transform: translateY(15px);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.slide-fade-leave-active {
+  transition: all 1.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.bulbe::after {
-  content: "";
-  background-image: url("../assets/images/bulb.png");
-  /* Replace with the path to your crown image */
-  background-repeat: no-repeat;
-  background-size: contain;
-  /* Adjust as needed to control image size */
-  width: 1em;
-  /* Set the desired width */
-  height: 1em;
-  /* Set the desired height */
-  position: absolute;
-  top: -0.7em;
-  /* Adjust to position the image above the text */
-  left: 80%;
-  transform: translateX(-50%);
-  z-index: 1;
-  /* Ensure the image is above the text */
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.8s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.8s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes slidein {

@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         'dark-purple': '#150e28',
         'bright-purple': '#903AFF',
-        'purple': '#D434FE',
+        'purple': 'rgba(212 52 254 / <alpha-value>)' // #D434FE 
       },
       fontFamily: {
         'clash': ['Clash Display', 'sans-serif'],
