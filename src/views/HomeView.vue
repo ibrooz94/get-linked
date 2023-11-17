@@ -11,7 +11,7 @@ import { setupGSAPAnimation } from "../components/useAnimation";
 import Timeline from "../components/Timeline.vue";
 
 gsap.registerPlugin(ScrollTrigger);
-const { animateFadeRight, animateFadeLeft, updateNavbar } = setupGSAPAnimation();
+const { animateFadeRight, animateFadeLeft, updateNavbarActiveSection } = setupGSAPAnimation();
 const purpleGradient =
   "bg-gradient-to-r from-purple to-bright-purple hover:bg-gradient-to-t hover:from-bright-purple hover:to-purple";
 
@@ -29,7 +29,6 @@ requestAnimationFrame(raf);
 
 // Handle smoothscroll to section
 function handleScrollTo(target) {
-  console.log("Scrolled to ", target)
   lenis.scrollTo(target, {offset: -120})
 }
 
@@ -47,7 +46,7 @@ onMounted(() => {
     const fadeLeft = self.selector("[data-fade-left]");
     fadeLeft.forEach(animateFadeLeft);
 
-    updateNavbar(activeSection)
+    updateNavbarActiveSection(activeSection)
 
   }, main.value);
 });
@@ -108,7 +107,9 @@ onUnmounted(() => {
               </p>
 
               <button :class="purpleGradient" class="text-white py-4 px-14 lg:self-start">
+                <router-link to="/register">
                 Register
+              </router-link>
               </button>
               <CoundownTimer />
             </div>
@@ -168,9 +169,9 @@ onUnmounted(() => {
 
     <section
       class="relative flex flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
-      <img class="absolute -top-[20%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
+      <img class="absolute -top-[20%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
         alt="" />
-      <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] " src="../assets/images/purple-flare.png"
+      <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] mix-blend-hard-light " src="../assets/images/purple-flare.png"
         alt="">
 
       <div data-fade-right class="text-white relative">
@@ -203,9 +204,9 @@ onUnmounted(() => {
 
     <section
       class="relative flex flex-col lg:flex-row items-center justify-center gap-[7%] max-w-[1512px] px-[7%] mx-auto text-center lg:text-start">
-      <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] z-[-1] lg:w-[45em]"
+      <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] z-[-1] lg:w-[45em] mix-blend-hard-light"
         src="../assets/images/purple-flare.png" alt="" />
-      <img class="absolute bottom-0 lg:-bottom-[20%] right-0 lg:-right[30%] z-[-1]"
+      <img class="absolute bottom-0 lg:-bottom-[20%] right-0 lg:-right[30%] z-[-1] mix-blend-hard-light"
         src="../assets/images/purple-flare.png" alt="" />
 
       <div data-fade-right class="pb-8 basis-6/12 relative">
@@ -223,7 +224,9 @@ onUnmounted(() => {
         </div>
 
         <button :class="purpleGradient" class="mt-4 text-white py-4 px-14 lg:self-start">
-          Register
+          <router-link to="/register">
+            Register
+          </router-link>
         </button>
       </div>
     </section>
@@ -376,7 +379,7 @@ onUnmounted(() => {
     <!-- PRIVACY POLICY AND TERMS -->
     <section
       class="relative flex flex-auto flex-col lg:flex-row  gap-[8%] max-w-[1500px] px-[7%] mx-auto justify-between items-start text-center lg:text-start">
-      <img class="absolute -top-[15%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em]" src="../assets/images/purple-flare.png"
+      <img class="absolute -top-[15%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
         alt="" />
 
       <div data-fade-right class="text-white basis-6/12 relative">

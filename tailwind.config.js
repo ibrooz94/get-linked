@@ -7,9 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-purple': '#150e28',
-        'bright-purple': '#903AFF',
-        'purple': 'rgba(212 52 254 / <alpha-value>)' // #D434FE 
+        'dark-purple': 'rgb(var(--color-dark-purple) / <alpha-value>)',
+        'bright-purple': 'rgb(var(--color-bright-purple) / <alpha-value>)',
+        'purple': 'rgb(var(--color-purple) / <alpha-value>)',
+
+        // 'dark-purple':'rgb(21 14 40 / <alpha-value>)', // #150e28
+        // 'bright-purple': '#903AFF',
+        // 'purple': 'rgb(212 52 254 / <alpha-value>)' // #D434FE 
       },
       fontFamily: {
         'clash': ['Clash Display', 'sans-serif'],

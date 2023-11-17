@@ -16,13 +16,18 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ContactView.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/RegisterView.vue')
     }
   ],
   scrollBehavior (to, from, savedPosition) {
-    if (from.name == 'contact' && to.hash) {
+    if (from.name != 'home' && to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth',
+        // behavior: 'smooth',
         top: 120
       }
     }

@@ -41,7 +41,7 @@ export function setupGSAPAnimation() {
     );
   }
 
-  function updateNavbar(activeSect) {
+  function updateNavbarActiveSection(activeSect) {
     const sections = document.querySelectorAll("section[id]");
 
     sections.forEach((section) => {
@@ -51,7 +51,7 @@ export function setupGSAPAnimation() {
           scrub: true,
           start: "top center",
           end: "bottom center",
-          markers: true,
+          markers: false,
           onEnter: () => {
             // Update the active section based on the section's id
             activeSect.value = section.id
@@ -60,13 +60,13 @@ export function setupGSAPAnimation() {
             activeSect.value = section.id
             
           },
-          // onLeaveBack: () => {
-          //   activeSect.value = null
+          onLeaveBack: () => {
+            activeSect.value = null
             
-          // },
-          // onLeave: () => {
-          //   activeSect.value = null;
-          // },
+          },
+          onLeave: () => {
+            activeSect.value = null
+          },
         },
       });
     });
@@ -75,6 +75,6 @@ export function setupGSAPAnimation() {
   return {
     animateFadeRight,
     animateFadeLeft,
-    updateNavbar,
+    updateNavbarActiveSection,
   };
 }
