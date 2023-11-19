@@ -49,7 +49,7 @@ export function setupGSAPAnimation() {
         scrollTrigger: {
           trigger: section,
           scrub: true,
-          start: "top center",
+          start: "top 60%",
           end: "bottom center",
           markers: false,
           onEnter: () => {

@@ -2,7 +2,17 @@
 import { ref, toRefs } from 'vue'
 
 const emit = defineEmits(['scrollTo'])
-const props = defineProps(["activeSection"])
+const props = defineProps(
+    {
+        activeSection : {
+            type: String,
+        },
+        isSticky: {
+            type: Boolean,
+            default: true
+        }
+    }
+    )
 
 const { activeSection } = toRefs(props)
 const menuOpen = ref(false)
@@ -25,9 +35,9 @@ const handleActiveSection = (el) => {
 </script>
 
 <template>
-    <nav class="z-[999] flex items-center justify-between max-w-[1512px] mx-auto px-[7%] pt-8 pb-4 lg:h-auto
-        sticky backdrop-blur-lg top-0">
-        <div class="flex-none z-[11]" :class="menuOpen ? 'fixed top-8 left-[7%] ' : 'static'">
+    <nav class="z-30 flex items-center justify-between max-w-[1512px] mx-auto px-[7%] pt-8 pb-4 lg:h-auto"
+        :class=" isSticky ? 'sticky backdrop-blur-lg top-0': ''">
+        <div class="flex-none z-20" :class="menuOpen ? 'fixed top-8 left-[7%] ' : 'static'">
             <img class="w-40" src="../assets/images/getlinked_logo.png" alt="logo" srcset="" />
         </div>
 
@@ -73,7 +83,7 @@ const handleActiveSection = (el) => {
 
         </div>
 
-        <div role="menu" class="lg:hidden z-[12]" :class="menuOpen ? 'fixed top-8 right-8' : 'static'" aria-label="Menu">
+        <div role="menu" class="lg:hidden z-20" :class="menuOpen ? 'fixed top-8 right-8' : 'static'" aria-label="Menu">
             <img @click="menuOpen = !menuOpen" v-if="!menuOpen" role="button" src="../assets/icons/hamburger.png"
                 alt="hamburger_icon">
             <img @click="menuOpen = !menuOpen" v-if="menuOpen" role="button" src="../assets/icons/close.png"

@@ -76,11 +76,11 @@ onUnmounted(() => {
 
         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center relative">
           <!-- stars  -->
-          <img class="absolute top-4 lg:top-[-5%] left-[5%] -z-[1] w-2 lg:w-auto" src="../assets/images/star-1.png"
+          <img class="absolute top-4 lg:top-[-5%] left-[5%] -z-10 w-2 lg:w-auto" src="../assets/images/star-1.png"
             alt="" />
-          <img class="absolute top-[2%] right-[10%] lg:top-[5%] lg:right-[40%] -z-[1] w-3 lg:w-auto"
+          <img class="absolute top-[2%] right-[10%] lg:top-[5%] lg:right-[40%] -z-10 w-3 lg:w-auto"
             src="../assets/images/star-2.png" alt="" />
-          <img class="absolute left-[75%] lg:left-[30%] bottom-[65%] lg:bottom-[30%] -z-[1] w-3 lg:w-auto"
+          <img class="absolute left-[75%] lg:left-[30%] bottom-[65%] lg:bottom-[30%] -z-10 w-3 lg:w-auto"
             src="../assets/images/star-2.png" alt="" />
           <Transition name="slide-fade" appear>
             <div class="flex flex-col items-center lg:items-start flex-initial gap-4 text-center lg:text-start">
@@ -107,7 +107,7 @@ onUnmounted(() => {
               </p>
 
               <button :class="purpleGradient" class="text-white py-4 px-14 lg:self-start">
-                <router-link to="/register">
+                <router-link :to="{name: 'register'}">
                 Register
               </router-link>
               </button>
@@ -169,9 +169,9 @@ onUnmounted(() => {
 
     <section
       class="relative flex flex-col-reverse lg:flex-row items-center justify-center gap-[10%] max-w-[1300px] px-[7%] mx-auto text-center lg:text-start">
-      <img class="absolute -top-[20%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
+      <img class="absolute -top-[20%] -left-[20%] lg:left-0 -z-10 lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
         alt="" />
-      <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] z-[-1] mix-blend-hard-light " src="../assets/images/purple-flare.png"
+      <img class="absolute bottom-0 lg:-bottom-[70%] lg:-right-[40%] -z-10 mix-blend-hard-light " src="../assets/images/purple-flare.png"
         alt="">
 
       <div data-fade-right class="text-white relative">
@@ -204,9 +204,9 @@ onUnmounted(() => {
 
     <section
       class="relative flex flex-col lg:flex-row items-center justify-center gap-[7%] max-w-[1512px] px-[7%] mx-auto text-center lg:text-start">
-      <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] z-[-1] lg:w-[45em] mix-blend-hard-light"
+      <img class="absolute top-0 lg:-bottom-[10%] -left-[20%] lg:-left-[10%] -z-10 lg:w-[45em] mix-blend-hard-light"
         src="../assets/images/purple-flare.png" alt="" />
-      <img class="absolute bottom-0 lg:-bottom-[20%] right-0 lg:-right[30%] z-[-1] mix-blend-hard-light"
+      <img class="absolute bottom-0 lg:-bottom-[20%] right-0 lg:-right[30%] -z-10 mix-blend-hard-light"
         src="../assets/images/purple-flare.png" alt="" />
 
       <div data-fade-right class="pb-8 basis-6/12 relative">
@@ -224,7 +224,7 @@ onUnmounted(() => {
         </div>
 
         <button :class="purpleGradient" class="mt-4 text-white py-4 px-14 lg:self-start">
-          <router-link to="/register">
+          <router-link :to="{name: 'register'}">
             Register
           </router-link>
         </button>
@@ -379,7 +379,7 @@ onUnmounted(() => {
     <!-- PRIVACY POLICY AND TERMS -->
     <section
       class="relative flex flex-auto flex-col lg:flex-row  gap-[8%] max-w-[1500px] px-[7%] mx-auto justify-between items-start text-center lg:text-start">
-      <img class="absolute -top-[15%] -left-[20%] lg:left-0 z-[-1] lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
+      <img class="absolute -top-[15%] -left-[20%] lg:left-0 -z-10 lg:w-[45em] mix-blend-hard-light" src="../assets/images/purple-flare.png"
         alt="" />
 
       <div data-fade-right class="text-white basis-6/12 relative">

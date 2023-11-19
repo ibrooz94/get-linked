@@ -7,9 +7,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-purple': 'rgb(var(--color-dark-purple) / <alpha-value>)',
-        'bright-purple': 'rgb(var(--color-bright-purple) / <alpha-value>)',
-        'purple': 'rgb(var(--color-purple) / <alpha-value>)',
+        'dark-purple': 'rgb(21 14 40 / <alpha-value>)',
+        'bright-purple': 'rgb(144 58 255 / <alpha-value>)',
+        'purple': 'rgb(212 52 254 / <alpha-value>)',
 
         // 'dark-purple':'rgb(21 14 40 / <alpha-value>)', // #150e28
         // 'bright-purple': '#903AFF',
