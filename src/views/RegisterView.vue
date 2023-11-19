@@ -28,7 +28,7 @@ const modalActive = ref(false)
         <img class="absolute -top-[10%] -left-[30%] -z-10 mix-blend-hard-light w-[60em]"
             src="../assets/images/purple-flare.png" alt="" />
         <section
-            class="relative flex flex-col lg:flex-row justify-center  items-center gap-[10%] max-w-[1300px] mx-auto mt-16">
+            class="relative flex flex-col lg:flex-row justify-center  items-center gap-[10%] max-w-[1300px] mx-auto mt-10">
             <div class="text-white flex gap-5 text-[13px] w-[15em] lg:w-auto mx-auto">
 
                 <img src="../assets/images/designer_thumbs.png" alt="">
